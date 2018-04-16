@@ -1,0 +1,17 @@
+#!/bin/sh
+vi cgiaudit.h
+./configure
+make
+make install
+# Uninstall: make uninstall
+#
+# configure options:
+# --enable-native-regex
+# Force the use of native regular expression functions from libc's regex.h
+# and skip the libpcre tests altogether.
+# Warning: This may cause runtime problems such as core dumps if using a BSD libc.
+# This is the configure default for Linux, SunOS, and IRIX.
+#
+# --with-pcrelibdir=DIR
+# Specify the directory where PCRE libraries are located.
+# BSD may need /usr/local/lib here depending on your linker configuration. 

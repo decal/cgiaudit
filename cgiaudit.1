@@ -1,0 +1,73 @@
+.Id $Id$
+.TH CGIAUDIT 1 "Dec 2001" 
+.SH NAME
+cgiaudit \- use HTML FORM's to audit CGI programs without source
+
+.SH SYNOPSIS
+.B cgiaudit 
+.RB [-hrvx] 
+.RB [-s\ bits]
+.RB [-p\ proxyhost\ -t\ proxy\ port]
+.RB [-c\ file]
+.I URL
+.RB [URL2]
+.RB [...]
+.SH DESCRIPTION
+
+cgiaudit is a black-box CGI auditing tool. It will automatically audit CGI entities without
+user interaction at runtime. cgiaudit takes URL's as command-line arguments; these URL's are
+assumed to contain HTML form's from which auditing information can be gleaned. Form fields
+such as INPUT and TEXTAREA tags are seperated from the form and tested against a series of attacks
+which are configurable through cgiaudit.conf.
+
+.TP 
+cgiaudit output is formatted as follows:
+.TP
+.I [i.n.j] ...
+.TP
+where i, n, and j are integer constants successively representing the document, form, and field that are currently being processed. Each integer is optional, depending on the context. For example, if
+a message regarding a particular form is printed, j may be omitted or set to zero.
+
+.SH OPTIONS
+.TP 8
+.B \-h
+prints usage information to standard output.
+
+.TP 8
+.B \-p hostname
+proxy address
+
+.TP 8
+.B \-t port
+TCP port for proxy
+
+.TP 8
+.B \-r
+print HTTP headers from requests and replies
+
+.TP 8
+.B \-s [#|/#]
+spider mode causes cgiaudit to follow links from the HREF field of A tags.
+An IPv4 CIDR bitmask must be specified in order to restrict the spidering audit to a certain
+susbection of the WWW.
+
+.TP 8
+.B \-v
+Information such as the current form field being tested, and for which attack will be displayed.
+
+.TP 8 
+.B \-x
+Translate HTTP requests into a hex encoding. This may evade certain IDS's. It also assumes that
+the remote CGI program takes the liberty to decode these types of requests.
+
+.SH FILES
+.I /usr/local/cgiaudit/cgiaudit.conf
+.br
+
+.SH SEE ALSO
+.BR cgiaudit.conf (5)
+
+.SH BUGS
+.I Many 
+.SH AUTHOR
+cgiaudit was written by Derek Callaway <super@udel.edu>

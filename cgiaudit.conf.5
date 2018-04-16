@@ -1,0 +1,32 @@
+.TH CGIAUDIT.CONF 5 "09 December 2001"
+.UC 4
+.SH NAME
+cgiaudit.conf \- configuration file for cgiaudit
+.SH DESCRIPTION
+A
+.I cgiaudit.conf
+file contains instructions to the
+.IR cgiaudit (1)
+program. Each line contains three entities as follows: type, argument, description. 
+Each entity is seperated by whitespace. Description may contain whitespace as needed.
+Type may be search or string. Argument and description are roughly arbitrary.
+The string type takes an argument to be tested as the value for CGI variables or form fields.
+The argument to search is a regular expression which, if received from the HTTP server,
+denotes a possible attack success. 
+
+.SH EXAMPLE CGIAUDIT.CONF FILE
+.nf
+# type: search
+# argument: :[0-9]*:[0-9]*: passwd entry
+# description: passwd entry
+search :[0-9]*:[0-9]*: passwd entry
+# make sure CGI executions parse semicolons correctly
+string ;system%20/bin/cat%20/etc/passwd; bare semicolon 
+.fi
+
+cgiaudit is packaged with a healthy default configuration file.
+.SH SEE ALSO
+cgiaudit(1)
+.SH AUTHOR
+.nf
+Derek Callaway <super@udel.edu>

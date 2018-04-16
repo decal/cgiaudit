@@ -1,0 +1,6 @@
+cgiaudit-b 	first beta release
+
+cgiaduit-b2	added report,hex encoding,config file,etc.
+
+cgiaudit-1.0	first public release, spider mode and support for proxies
+		re-wrote parse_url.c

@@ -1,0 +1,44 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(main.c)
+AM_INIT_AUTOMAKE(cgiaudit,1.0)
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_CANONICAL_HOST
+dnl Checks for programs.
+
+dnl Checks for libraries.
+AC_ARG_WITH(nativeregex,[  --with-nativeregex Force use of native regular expression functions],[],[nativeregex=no])
+AC_ARG_WITH(pcrelibdir,[  --with-pcrelibdir=DIR	path where libpcre is installed],
+[if test $with_pcrelibdir = "yes";then echo "Please specify a directory for pcrelibdir!";exit;
+	else LDFLAGS="$LDFLAGS -L$with_pcrelibdir";fi],[])
+
+dnl The following is a list of typical operating systems with reliable regex functions in libc.
+if test `uname -s` != "Linux"; then
+if test `uname -s` != "SunOS"; then
+if test `uname -s` != "IRIX"; then
+if test `uname -s` != "IRIX64"; then
+
+if test $nativeregex; then
+AC_CHECK_LIB(pcre,pcre_compile,,echo "configure failed!";echo "Install libpcre! http://www.pcre.org";exit;)
+AC_CHECK_LIB(pcreposix,regcomp,,echo "configure failed!";echo "Install libpcreposix! http://www.pcre.org";exit;)
+fi
+
+fi
+fi
+fi
+fi
+
+AC_CHECK_FUNCS(gethostbyname socket)
+
+dnl Checks for header files.
+AC_HEADER_STDC
+dnl AC_CHECK_HEADERS()
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_HEADER_TIME
+
+dnl Checks for library functions.
+AC_TYPE_SIGNAL
+dnl AC_CHECK_FUNCS()
+
+AC_OUTPUT(Makefile)
