@@ -1,4 +1,4 @@
-
+<pre>
 cgiaudit by S
 ~^~^~^~^~^~^~
 
@@ -1063,3 +1063,4 @@ Date: Mon, 16 Apr 2018 14:32:51 GMT
 [1.0] Done with this document!
 
 No vulnerabilities found..
+</pre>
